@@ -6,10 +6,12 @@ def summary_numbs(first,sign,second):
 
 
 def main():
+
     first = int(input(f"Введите первое число: "))
     sign = input(f"Введите знак: ")
     second = int(input(f"Введите второе число: "))
-    print(summary_numbs(first,sign,second))
+    res = (summary_numbs(first,sign,second))
+    print(f"{first} {sign} {second} = {res}")
 
 
 
