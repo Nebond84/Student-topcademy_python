@@ -1,4 +1,11 @@
 def summary_numbs(first,sign,second):
+    """
+    Функция кальклятор
+    :param first:
+    :param sign:
+    :param second:
+    :return:
+    """
     res = 0
     if sign == "+":
         res = first + second
