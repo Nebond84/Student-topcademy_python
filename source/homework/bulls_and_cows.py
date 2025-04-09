@@ -1,5 +1,4 @@
 import random
-from tabnanny import check
 
 
 def get_all_answer():
@@ -41,7 +40,7 @@ def input_number():
             break
     return nums
 
-def check(nums, true_nums):
+def check_nums(nums, true_nums):
     bulls = 0
     cows = 0
     for i, num in enumerate(nums):
@@ -54,15 +53,42 @@ def check(nums, true_nums):
 
 
 
+def del_bad_answers(ans, enemy_try, bull, cow):
+    for num in ans[:]:
+        temp_bull, temp_cow = check_nums(num, enemy_try)
+        if temp_bull != bull or temp_cow != cow:
+            ans.remove(num)
+    return ans
 
-def del_bad_answers():
-    pass
 
+def main():
 
-answers = get_all_answer()
-player = input_number()
-enemy = get_one_answer(answers)
+    print(f"Игра 'Быки и коровы'")
 
-a, b = check(player,enemy)
+    answers = get_all_answer()
+    player = input_number()
+    enemy = get_one_answer(answers)
 
-print(a, b)
+    while True:
+        print("=" * 15 ,"Ход игрока", "=" * 15)
+        print(f"Угадайте число компьютера")
+        number = input_number()
+        bulls, cows = check_nums(number, enemy)
+        print(f"Быки: {bulls}, Коровы: {cows}")
+        if bulls == 4:
+            print(f"Победил игрок, число компьютера: {enemy}")
+            break
+
+        print("=" * 15, "Ход компьютера", "=" * 15)
+        enemy_try = get_one_answer(answers)
+        print(f"компьютер считает что вы загадали число: {enemy_try}")
+        bulls, cows = check_nums(enemy_try, player)
+        print(f"Быки: {bulls}, Коровы: {cows}")
+        if bulls == 4:
+            print(f"Победил компьютер, число компьютера: {enemy}")
+            break
+        else:
+            answers = del_bad_answers(answers,enemy_try,bulls,cows)
+
+if __name__ == "__main__":
+    main()
