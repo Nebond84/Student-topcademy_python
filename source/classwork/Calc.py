@@ -1,6 +1,6 @@
 def summary_numbs(first,sign,second):
     """
-    Функция кальклятор
+    Функция калькулятор
     :param first:
     :param sign:
     :param second:
