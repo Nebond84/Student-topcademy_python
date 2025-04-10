@@ -1,5 +1,6 @@
 import random
 
+STRONG = 5040
 
 def get_all_answer():
     """
@@ -54,10 +55,14 @@ def check_nums(nums, true_nums):
 
 
 def del_bad_answers(ans, enemy_try, bull, cow):
+    i = 0
     for num in ans[:]:
+        i += 1
         temp_bull, temp_cow = check_nums(num, enemy_try)
         if temp_bull != bull or temp_cow != cow:
             ans.remove(num)
+        if i > STRONG:
+            break
     return ans
 
 
@@ -91,4 +96,5 @@ def main():
             answers = del_bad_answers(answers,enemy_try,bulls,cows)
 
 if __name__ == "__main__":
+    STRONG = 10
     main()

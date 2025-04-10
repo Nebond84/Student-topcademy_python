@@ -9,6 +9,8 @@ while len(answers) > 1:
     ans = bulls_and_cows.get_one_answer(answers)
     print(f"Назови комбинацию - {ans}")
     bulls = int(input(f"Сколько быков?:  "))
+    if bulls == 4:
+        break
     cows = int(input(f"Сколько коров?:  "))
     answers = bulls_and_cows.del_bad_answers(answers, ans, bulls, cows)
 print(f"Ответ: {answers}")
