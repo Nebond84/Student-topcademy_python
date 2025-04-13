@@ -1,4 +1,10 @@
 def find_divisor(first_number,second_number):
+    """
+    Функция принимает два целых числа
+    :param first_number: первое число
+    :param second_number: второе число
+    :return: возвращает наибольший делитель двух чисел
+    """
     if second_number == 0:
         return first_number
     else:
