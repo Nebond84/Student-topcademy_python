@@ -32,12 +32,12 @@ class Car:
                         color = None,
                         price = None
                     ):
-        self.__model_name = model_name if model_name != None else self.__model_name
-        self.__year_of_issue = year_of_issue if year_of_issue != None else self.__year_of_issue
-        self.__manufacturer = manufacturer if manufacturer != None else self.__manufacturer
-        self.__engine_capacity = engine_capacity if engine_capacity != None else self.__engine_capacity
-        self.__color = color if color != None else self.__color
-        self.__price = price if price != None else self.__price
+        self.__model_name = model_name if model_name is not None else self.__model_name
+        self.__year_of_issue = year_of_issue if year_of_issue is not None else self.__year_of_issue
+        self.__manufacturer = manufacturer if manufacturer is not None else self.__manufacturer
+        self.__engine_capacity = engine_capacity if engine_capacity is not None else self.__engine_capacity
+        self.__color = color if color is not None else self.__color
+        self.__price = price if price is not None else self.__price
 
 
     def get_info(self):

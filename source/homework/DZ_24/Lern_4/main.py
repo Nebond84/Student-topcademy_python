@@ -1,0 +1,20 @@
+from flat import Flat
+
+if __name__ == "__main__":
+    flat1 = Flat(128,16000000)
+    flat2 = Flat(167, 19000000)
+    print(f"Площади квартиры равны?: {flat1 == flat2}")
+    print("=========================")
+    print(f"Площади квартиры не равны?: {flat1 != flat2}")
+    print("=========================")
+    print(f"Стоимость flat1 больше стоимости flat2?: {flat1 > flat2}")
+    print("=========================")
+    print(flat1 < flat2)
+    print("=========================")
+    print(flat1 >= flat2)
+    print("=========================")
+    print(flat1 <= flat2)
+    print("=========================")
+    print(flat1)
+    print("=========================")
+    print(flat2)
