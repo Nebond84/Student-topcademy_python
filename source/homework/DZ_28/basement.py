@@ -27,22 +27,25 @@ class Basement(Home):
     def __del__(self):
         pass
 
+    @property
+    def base(self):
+        return self.__type_basement
 
-    def change_base(self,name):
-        current_base = self.__type_basement
-        if name != self.__type_basement:
-            self.price -= self._basement[current_base] * self.area
-            if name in self._basement:
-                self.__type_basement = name
-                self.price += self._basement[name] * self.area
+    @base.setter
+    def base(self,name):
+        if type(name) is str:
+            current_base = self.__type_basement
+            if name != self.__type_basement:
+                if name in self._basement:
+                    self.price -= self._basement[current_base] * self.area
+                    self.__type_basement = name
+                    self.price += self._basement[name] * self.area
+                else:
+                    raise ValueError (f"Ожидается: Ленточный, Свайный, Плитный ")
             else:
-                raise ValueError (f"Ожидается: Ленточный, Свайный, Плитный ")
+                raise ValueError (f"Уже выбран!")
         else:
-            raise ValueError (f"Уже выбран!")
-
-
-
-
+            raise ValueError (f"Ожидается строка")
 
 
     def add_commun(self,communication):
@@ -54,7 +57,14 @@ class Basement(Home):
         else:
             raise ValueError (f"Ожидается - (Вода, Канализация, Газ)")
 
-
+    def del_commun(self,communication):
+        if communication in self._type_communication:
+            self.__communication.remove(communication)
+            self.price -= self._type_communication[communication]
+            return (f"Удалена коммуникация: {communication}\n"
+                    f"стоимостью - {self._type_communication[communication]} р.")
+        else:
+            raise ValueError (f"Ожидается - (Вода, Канализация, Газ)")
 
 
     def __str__(self):

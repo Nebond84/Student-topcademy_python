@@ -7,9 +7,9 @@ class Home(abc.ABC):
 
 
     def __int__(self,area,input_power):
-        self.__area = area
+        self._area = area
         self.__input_power = input_power
-        self.__price += (area * 2500)+(input_power * 2500)
+        self.__price +=(input_power * 2500)
 
 
     def __del__(self):
@@ -18,13 +18,9 @@ class Home(abc.ABC):
 
     @property
     def area(self):
-        return self.__area
+        return self._area
 
-    @area.setter
-    def area(self,area):
-        difference = area - self.__area
-        self.price += (difference * 2500)
-        self.__area = area
+
 
     @property
     def input_power(self):

@@ -2,15 +2,49 @@ from home import Home
 
 
 class AdditionalBuildings(Home):
-    __types_of_buildings = []
+    __types_of_buildings = ""
 
 
     def __init__(self,area,
                  input_power,
-                 types_of_buildings):
+                 ):
         super().__int__(area, input_power)
-        self.__types_of_buildings = types_of_buildings
+        self._building = {"Гараж" : 1200,
+                    "Беседка" : 600,
+                    "Баня" : 2300}
+        self.__types_of_buildings = []
+
 
 
     def __del__(self):
         pass
+
+
+
+    @property
+    def building(self):
+        return f"Дополнительные строения: {self.__types_of_buildings}"
+
+
+    def add_building(self,types_of_buildings):
+        if type(types_of_buildings) is str:
+            if types_of_buildings in self._building:
+                if types_of_buildings is not self.__types_of_buildings:
+                    self.__types_of_buildings.append(types_of_buildings)
+                    self.price += self._building[types_of_buildings] * self.area
+                else:
+                    raise ValueError (f"Строение уже имеется")
+            else:
+                raise ValueError (f"Ожидается Гараж, Баня, Беседка")
+        else:
+            raise ValueError (f"Ожидается строка")
+
+
+    def __str__(self):
+        build = ", ".join(self.__types_of_buildings)
+        return (f"Дополнительные строения:\n"
+                f"Площадь дополнительных строений - {self.area}\n"
+                f"Входная мощность - {self.input_power}\n"
+                f"Размещены дополнительные строения - {build}\n"
+                f"Итоговая цена - {self.price}")
+

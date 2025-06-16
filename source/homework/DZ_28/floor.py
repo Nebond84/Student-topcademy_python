@@ -1,5 +1,4 @@
 from home import Home
-from  basement import Basement
 
 
 class Floor(Home):
@@ -20,7 +19,7 @@ class Floor(Home):
 
     @property
     def rooms(self):
-        return self.__number_of_rooms
+        return f"Количество комнат - {self.__number_of_rooms}"
 
     @rooms.setter
     def rooms(self,number_of_rooms):
@@ -31,19 +30,25 @@ class Floor(Home):
                 raise ValueError (f"Ожидается число!")
         else:
             raise ValueError (f"Количество комнат должно быть больше 0 ")
-    
 
-    def __add__(self, other):
-        if isinstance(other,Basement):
-            total_price = self.price + other.price
-            return total_price
+
+    @property
+    def bathrooms(self):
+        return f"Количество санузлов - {self.__number_of_bathrooms}"
+
+    @bathrooms.setter
+    def bathrooms(self,number_of_bathrooms):
+        if number_of_bathrooms > 0:
+            if type(number_of_bathrooms) is int:
+                self.__number_of_bathrooms = number_of_bathrooms
+            else:
+                raise ValueError(f"Ожидается число!")
         else:
-            raise ValueError
-
+            raise ValueError(f"Количество комнат должно быть больше 0 ")
 
 
     def __str__(self):
-        self.price+=(self.__number_of_rooms * 100000)+(self.__number_of_bathrooms * 40000)
+        self.price+=(self.__number_of_rooms * 100000)+(self.__number_of_bathrooms * 60000)
         return (f"Первый Этаж:\n"
                 f"Площадь - {self.area} кв.м.\n"
                 f"Количество комнат - {self.__number_of_rooms}\n"
